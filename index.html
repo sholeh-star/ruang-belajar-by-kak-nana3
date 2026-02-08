@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruang Belajar by Kak Nana 🌟</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- VARIABEL WARNA --- */
+        :root {
+            --primary: #FF7EB3;   /* Pink Ceria khas Kak Nana */
+            --secondary: #7AFEFD; /* Biru Langit */
+            --accent: #FFD93D;    /* Kuning Bintang */
+            --text: #4A4A4A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: #FFF9FE;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: linear-gradient(135deg, var(--primary), #FF758C);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            border-bottom-left-radius: 100px 50px;
+            border-bottom-right-radius: 100px 50px;
+            position: relative;
+        }
+
+        header h1 { font-size: 3.5rem; text-shadow: 3px 3px rgba(0,0,0,0.1); }
+        header p { font-size: 1.3rem; margin-top: 10px; font-weight: 500; }
+
+        /* --- KONTEN UTAMA --- */
+        .container { max-width: 1100px; margin: -50px auto 50px; padding: 0 20px; }
+
+        /* Kartu Pelajaran */
+        .grid-materi {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 35px;
+            padding: 40px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 10px 0px #F0F0F0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid #F0F0F0;
+        }
+
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 15px 20px rgba(255,126,179,0.2); }
+        
+        .icon { font-size: 50px; margin-bottom: 15px; display: block; }
+
+        /* --- BAGIAN PENDAFTARAN & AI --- */
+        .info-box {
+            background: white;
+            margin-top: 60px;
+            padding: 40px;
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            text-align: center;
+            border: 2px dashed var(--primary);
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            background: #FFF0F6;
+            padding: 15px 25px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .ai-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn-ai {
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #F3F4F6;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: #555;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-ai:hover { background: var(--secondary); color: #000; }
+
+        footer { text-align: center; padding: 40px; color: #BCBCBC; }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Ruang Belajar</h1>
+    <p>🌟 Belajar Menyenangkan Bersama Kak Nana 🌟</p>
+</header>
+
+<div class="container">
+    <div class="grid-materi">
+        <a href="matematika.html" class="card">
+            <span class="icon">➕</span>
+            <h3>Matematika</h3>
+            <p>Berhitung Jadi Mudah!</p>
+        </a>
+        <a href="B.indonesia.html" class="card">
+            <span class="icon">📖</span>
+            <h3>B. Indonesia</h3>
+            <p>Membaca Dongeng</p>
+        </a>
+        <a href="B.inggris.html" class="card">
+            <span class="icon">🇬🇧</span>
+            <h3>B. Inggris</h3>
+            <p>Fun with English</p>
+        </a>
+        <a href="P.agama.html" class="card">
+            <span class="icon">🕌</span>
+            <h3>Agama</h3>
+            <p>Akhlak Mulia</p>
+        </a>
+        <a href="bahasa_jawa.html" class="card">
+    <span class="icon">🎭</span>
+    <h3>Basa Jawa</h3>
+    <p>Sinau Unggah-Ungguh</p>
+</a>
+    </div>
+
+    <div class="info-box">
+        <h2>Yuk, Daftar Sekarang! 🎒</h2>
+        <p>Bergabung bersama teman-teman lainnya di Ruang Belajar Kak Nana.</p>
+        
+        <div class="contact-grid">
+            <div class="contact-item">📞 WA: 0800000</div>
+            <div class="contact-item">📧 Email: ruangbelajar@email.com</div>
+        </div>
+
+        <hr style="margin: 40px 0; border: 0; border-top: 1px solid #EEE;">
+
+        <h3>🤖 Butuh Bantuan Cepat? Tanya AI:</h3>
+        <div class="ai-buttons">
+            <a href="https://chat.openai.com" target="_blank" class="btn-ai">ChatGPT</a>
+            <a href="https://gemini.google.com" target="_blank" class="btn-ai">Gemini</a>
+            <a href="https://www.deepseek.com" target="_blank" class="btn-ai">DeepSeek</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 Ruang Belajar by Kak Nana | Semangat Belajar! ❤️
+</footer>
+
+</body>
+</html>

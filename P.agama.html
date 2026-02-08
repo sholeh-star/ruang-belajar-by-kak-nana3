@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taman Ilmu Agama - Ruang Belajar Kak Nana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF7EB3;
+            --agama-green: #66bb6a;
+            --agama-dark: #2e7d32;
+            --bg-light: #f1f8e9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: var(--bg-light);
+            margin: 0;
+            color: #333;
+        }
+
+        /* Navigasi */
+        .nav-bar {
+            background: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .btn-back {
+            text-decoration: none;
+            background: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 0 #e66a9a;
+        }
+
+        /* Header */
+        .header-agama {
+            background: linear-gradient(135deg, var(--agama-green), var(--agama-dark));
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+            border-bottom-left-radius: 80px;
+            border-bottom-right-radius: 80px;
+        }
+
+        .header-agama h1 { font-size: 3rem; margin: 0; text-shadow: 2px 2px rgba(0,0,0,0.1); }
+
+        .container { max-width: 1200px; margin: -50px auto 60px; padding: 0 20px; }
+
+        /* Grid Materi */
+        .materi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .materi-card {
+            background: white;
+            border-radius: 35px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 3px solid #e8f5e9;
+            box-shadow: 0 10px 0 #dcedc8;
+        }
+
+        .materi-card:hover { transform: translateY(-10px); border-color: var(--agama-green); }
+
+        .icon-box { font-size: 50px; margin-bottom: 10px; display: block; }
+
+        /* Display Panel */
+        .display-box {
+            margin-top: 50px;
+            background: white;
+            padding: 45px;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            display: none;
+            border: 4px solid var(--agama-green);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .materi-section {
+            background: #f9fdf9;
+            padding: 20px;
+            border-radius: 20px;
+            border-left: 10px solid var(--agama-green);
+            margin-bottom: 20px;
+        }
+
+        .close-btn { float: right; background: #e53935; color: white; border: none; padding: 5px 15px; border-radius: 20px; cursor: pointer; }
+
+        footer { text-align: center; padding: 40px; color: #99aab5; }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <a href="index.html" class="btn-back">⬅ Beranda</a>
+        <div style="font-weight:bold; color:var(--primary)">Pendidikan Agama by Kak Nana</div>
+    </div>
+
+    <header class="header-agama">
+        <h1>Baitul 'Ilmi</h1>
+        <p>Belajar Kebaikan, Membangun Akhlak Mulia</p>
+    </header>
+
+    <div class="container">
+        <div class="materi-grid">
+            <div class="materi-card" onclick="buka('fiqih')">
+                <span class="icon-box">💧</span>
+                <h3>Fiqih Ibadah</h3>
+                <p>Thaharah, Shalat, & Puasa</p>
+            </div>
+            <div class="materi-card" onclick="buka('aqidah')">
+                <span class="icon-box">🌟</span>
+                <h3>Aqidah Dasar</h3>
+                <p>Rukun Iman & Islam</p>
+            </div>
+            <div class="materi-card" onclick="buka('akhlak')">
+                <span class="icon-box">🤝</span>
+                <h3>Akhlak Mulia</h3>
+                <p>Adab kepada Orang Tua & Teman</p>
+            </div>
+            <div class="materi-card" onclick="buka('tajwid')">
+                <span class="icon-box">📖</span>
+                <h3>Ilmu Tajwid</h3>
+                <p>Cara Membaca Al-Qur'an</p>
+            </div>
+            <div class="materi-card" onclick="buka('surah')">
+                <span class="icon-box">☪️</span>
+                <h3>Surah Pendek</h3>
+                <p>Hafalan Juz 30 (Juz Amma)</p>
+            </div>
+        </div>
+
+        <div id="panel" class="display-box">
+            <button class="close-btn" onclick="document.getElementById('panel').style.display='none'">Tutup X</button>
+            <h2 id="judul" style="color: var(--agama-dark);">Materi Agama</h2>
+            <div id="konten"></div>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 Ruang Belajar Kak Nana | Jendela Kebaikan</footer>
+
+    <script>
+        function buka(kat) {
+            const p = document.getElementById('panel');
+            const j = document.getElementById('judul');
+            const k = document.getElementById('konten');
+            p.style.display = "block";
+            p.scrollIntoView({behavior: 'smooth'});
+
+            if(kat === 'fiqih') {
+                j.innerText = "💧 Fiqih Ibadah (SD-SMP)";
+                k.innerHTML = `
+                    <div class="materi-section">
+                        <strong>1. Thaharah (Bersuci):</strong> Belajar Wudhu, Tayamum, dan Mandi Wajib.<br>
+                        <strong>2. Shalat 5 Waktu:</strong> Syarat sah, rukun shalat, dan bacaan shalat lengkap.<br>
+                        <strong>3. Puasa & Zakat:</strong> Pengertian puasa Ramadhan dan cara menghitung zakat fitrah (SMP).
+                    </div>`;
+            } else if(kat === 'aqidah') {
+                j.innerText = "🌟 Aqidah (Tauhid)";
+                k.innerHTML = `
+                    <div class="materi-section">
+                        <strong>Rukun Iman (6):</strong> Iman kepada Allah, Malaikat, Kitab, Rasul, Hari Kiamat, Qada & Qadar.<br>
+                        <strong>Sifat Wajib Allah:</strong> Wujud, Qidam, Baqa', dll (20 Sifat).
+                    </div>`;
+            } else if(kat === 'akhlak') {
+                j.innerText = "🤝 Adab & Akhlak";
+                k.innerHTML = `
+                    <div class="materi-section">
+                        <strong>Adab kepada Orang Tua:</strong> Berbicara sopan (Birrul Walidain).<br>
+                        <strong>Akhlak Mahmudah:</strong> Jujur, Amanah, Sabar, dan Pemaaf.<br>
+                        <strong>Menghindari Akhlak Mazmumah:</strong> Bohong, Iri dengki, dan Sombong.
+                    </div>`;
+            } else if(kat === 'tajwid') {
+                j.innerText = "📖 Ilmu Tajwid (SMP)";
+                k.innerHTML = `
+                    <div class="materi-section">
+                        <strong>Hukum Nun Sukun & Tanwin:</strong> Izhar, Idgham, Iqlab, Ikhfa.<br>
+                        <strong>Hukum Mim Mati:</strong> Idgham Mimi, Ikhfa Syafawi, Izhar Syafawi.<br>
+                        <strong>Qalqalah:</strong> Sugra (Kecil) & Kubra (Besar).
+                    </div>`;
+            } else if(kat === 'surah') {
+                j.innerText = "☪️ Hafalan Surah Pendek";
+                k.innerHTML = `
+                    <div class="materi-section">
+                        <strong>SD:</strong> Al-Fatihah, Al-Ikhlas, Al-Falaq, An-Nas, Al-Kautsar.<br>
+                        <strong>SMP:</strong> At-Tiin, Al-Alaq, Ad-Duha, Al-Insyirah.<br>
+                        <p><em>Tips Kak Nana: Baca 5-10 kali setiap hari agar hafalan kuat!</em></p>
+                    </div>`;
+            }
+        }
+    </script>
+</body>
+</html>

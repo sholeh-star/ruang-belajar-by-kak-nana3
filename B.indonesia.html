@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petualangan Literasi - Ruang Belajar Kak Nana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #FF7EB3;
+            --indo-red: #FF6B6B;
+            --indo-orange: #FFD93D;
+            --paper-cream: #FFFDF9;
+            --text-dark: #4A4A4A;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: #FFF5F7;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigasi */
+        .nav-bar {
+            background: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .btn-back {
+            text-decoration: none;
+            background: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 0 #e66a9a;
+            transition: 0.3s;
+        }
+
+        .logo-nana { font-weight: 700; color: var(--primary); }
+
+        /* Header */
+        .header-indo {
+            background: linear-gradient(135deg, var(--indo-red), #FF8E8E);
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+            border-bottom-left-radius: 80px;
+            border-bottom-right-radius: 80px;
+            position: relative;
+        }
+
+        .header-indo h1 { font-size: 3rem; margin: 0; text-shadow: 2px 2px rgba(0,0,0,0.1); }
+
+        /* Container */
+        .container { max-width: 1200px; margin: -50px auto 60px; padding: 0 20px; }
+
+        .materi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* Card Style */
+        .materi-card {
+            background: white;
+            border-radius: 35px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid #f0f0f0;
+            box-shadow: 0 10px 0 #eee;
+            position: relative;
+        }
+
+        .materi-card:hover { transform: translateY(-10px); border-color: var(--indo-red); }
+        
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #eee;
+            padding: 4px 12px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .icon-materi { font-size: 50px; margin-bottom: 15px; display: block; }
+
+        /* Display Box */
+        .display-box {
+            margin-top: 50px;
+            background: var(--paper-cream);
+            padding: 45px;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            display: none;
+            border: 3px dashed var(--indo-red);
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .materi-content h3 { color: var(--indo-red); margin-bottom: 15px; }
+
+        .info-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            border-left: 8px solid var(--indo-red);
+            margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .close-btn {
+            float: right;
+            background: var(--indo-red);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        footer { text-align: center; padding: 40px; color: #bbb; }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <a href="index.html" class="btn-back">⬅ Beranda</a>
+        <div class="logo-nana">Ruang Belajar Kak Nana 🌟</div>
+    </div>
+
+    <header class="header-indo">
+        <h1>Gerbang Bahasa</h1>
+        <p>Jelajahi indahnya kata dan karya sastra Indonesia</p>
+    </header>
+
+    <div class="container">
+        <div class="materi-grid">
+            <div class="materi-card" onclick="tampil('pantun')">
+                <div class="badge">SD</div>
+                <span class="icon-materi">📜</span>
+                <h3>Pantun & Puisi</h3>
+                <p>Belajar berima dan berirama.</p>
+            </div>
+
+            <div class="materi-card" onclick="tampil('dongeng')">
+                <div class="badge">SD</div>
+                <span class="icon-materi">🏰</span>
+                <h3>Dongeng & Fabel</h3>
+                <p>Cerita rakyat dan hewan teladan.</p>
+            </div>
+
+            <div class="materi-card" onclick="tampil('spok')">
+                <div class="badge">SD/SMP</div>
+                <span class="icon-materi">✍️</span>
+                <h3>Struktur SPOK</h3>
+                <p>Menyusun kalimat yang benar.</p>
+            </div>
+
+            <div class="materi-card" onclick="tampil('laporan')">
+                <div class="badge">SMP</div>
+                <span class="icon-materi">🔬</span>
+                <h3>Teks Laporan</h3>
+                <p>Observasi dan Percobaan.</p>
+            </div>
+
+            <div class="materi-card" onclick="tampil('pidato')">
+                <div class="badge">SMP</div>
+                <span class="icon-materi">🎙️</span>
+                <h3>Pidato & Diskusi</h3>
+                <p>Cara berbicara di depan umum.</p>
+            </div>
+
+            <div class="materi-card" onclick="tampil('majas')">
+                <div class="badge">SMP</div>
+                <span class="icon-materi">✨</span>
+                <h3>Majas & Gaya Bahasa</h3>
+                <p>Metafora, Personifikasi, dll.</p>
+            </div>
+        </div>
+
+        <div id="panel-isi" class="display-box">
+            <button class="close-btn" onclick="tutup()">Tutup X</button>
+            <div id="materi-konten" class="materi-content"></div>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 Ruang Belajar Kak Nana</footer>
+
+    <script>
+        function tampil(kategori) {
+            const panel = document.getElementById('panel-isi');
+            const konten = document.getElementById('materi-konten');
+            panel.style.display = "block";
+            panel.scrollIntoView({ behavior: 'smooth' });
+
+            if(kategori === 'pantun') {
+                konten.innerHTML = `
+                    <h3>📜 Pantun & Puisi (SD)</h3>
+                    <p>Pantun adalah puisi lama yang memiliki rima a-b-a-b.</p>
+                    <div class="info-panel">
+                        <em>Contoh Pantun:</em><br>
+                        Masak air sampai mendidih (a)<br>
+                        Setelah itu minum susu (b)<br>
+                        Janganlah kamu bersedih (a)<br>
+                        Mari belajar bersamaku (b)
+                    </div>
+                `;
+            } else if(kategori === 'dongeng') {
+                konten.innerHTML = `
+                    <h3>🏰 Dongeng & Fabel (SD)</h3>
+                    <p>Fabel adalah cerita di mana hewan bertingkah laku seperti manusia.</p>
+                    <div class="info-panel">
+                        <strong>Unsur Intrinsik:</strong><br>
+                        1. Tema (Ide cerita)<br>
+                        2. Tokoh (Pemeran)<br>
+                        3. Alur (Jalan cerita)<br>
+                        4. Amanat (Pesan moral)
+                    </div>
+                `;
+            } else if(kategori === 'spok') {
+                konten.innerHTML = `
+                    <h3>✍️ Kalimat Efektif (SD/SMP)</h3>
+                    <p>Kalimat yang benar minimal memiliki Subjek dan Predikat.</p>
+                    <div class="info-panel">
+                        <strong>SPOK:</strong><br>
+                        S: Subjek (Pelaku)<br>
+                        P: Predikat (Tindakan)<br>
+                        O: Objek (Yang dikenai)<br>
+                        K: Keterangan (Tempat/Waktu)
+                    </div>
+                `;
+            } else if(kategori === 'laporan') {
+                konten.innerHTML = `
+                    <h3>🔬 Teks Laporan Hasil Observasi (SMP)</h3>
+                    <p>Teks ini berisi fakta-fakta yang ditemukan setelah mengamati sesuatu.</p>
+                    <div class="info-panel">
+                        <strong>Struktur Teks:</strong><br>
+                        - Definisi Umum (Apa itu objeknya?)<br>
+                        - Deskripsi Bagian (Penjelasan detail)<br>
+                        - Deskripsi Manfaat (Kegunaannya)
+                    </div>
+                `;
+            } else if(kategori === 'pidato') {
+                konten.innerHTML = `
+                    <h3>🎙️ Teks Pidato Persuasif (SMP)</h3>
+                    <p>Pidato yang bertujuan mengajak pendengar melakukan sesuatu.</p>
+                    <div class="info-panel">
+                        <strong>Bagian Pidato:</strong><br>
+                        1. Pembukaan (Salam & Sapaan)<br>
+                        2. Isi (Pesan utama)<br>
+                        3. Penutup (Kesimpulan & Harapan)
+                    </div>
+                `;
+            } else if(kategori === 'majas') {
+                konten.innerHTML = `
+                    <h3>✨ Majas & Gaya Bahasa (SMP)</h3>
+                    <p>Majas membuat tulisan jadi lebih hidup dan indah.</p>
+                    <div class="info-panel">
+                        - <strong>Personifikasi:</strong> Benda mati bertingkah seperti manusia. (Contoh: Ombak berkejaran)<br>
+                        - <strong>Hiperbola:</strong> Melebih-lebihkan sesuatu. (Contoh: Suaranya menggelegar membelah angkasa)<br>
+                        - <strong>Metafora:</strong> Perbandingan langsung. (Contoh: Dia adalah bintang kelas)
+                    </div>
+                `;
+            }
+        }
+        function tutup() { document.getElementById('panel-isi').style.display = "none"; }
+    </script>
+</body>
+</html>

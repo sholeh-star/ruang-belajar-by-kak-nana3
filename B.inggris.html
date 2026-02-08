@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English World - Ruang Belajar Kak Nana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF7EB3;
+            --english-blue: #4facfe;
+            --space-purple: #a29bfe;
+            --bg-sky: #f0f9ff;
+            --text-dark: #2c3e50;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: var(--bg-sky);
+            margin: 0;
+            color: var(--text-dark);
+        }
+
+        /* Navigasi */
+        .nav-bar {
+            background: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .btn-back {
+            text-decoration: none;
+            background: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 0 #e66a9a;
+        }
+
+        /* Header */
+        .header-eng {
+            background: linear-gradient(135deg, var(--english-blue), var(--space-purple));
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+            border-bottom-left-radius: 80px;
+            border-bottom-right-radius: 80px;
+        }
+
+        .header-eng h1 { font-size: 3rem; margin: 0; }
+
+        .container { max-width: 1200px; margin: -50px auto 60px; padding: 0 20px; }
+
+        /* Kamus Section */
+        .search-box {
+            background: white;
+            padding: 30px;
+            border-radius: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            text-align: center;
+            border: 3px solid var(--english-blue);
+        }
+
+        .search-box input {
+            width: 80%;
+            padding: 15px 25px;
+            border-radius: 30px;
+            border: 2px solid #ddd;
+            font-family: 'Quicksand';
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        /* Grid Materi */
+        .materi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .materi-card {
+            background: white;
+            border-radius: 35px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 3px solid #f0f0f0;
+            box-shadow: 0 10px 0 #eee;
+        }
+
+        .materi-card:hover { transform: translateY(-10px); border-color: var(--english-blue); }
+
+        .badge { background: #eee; padding: 4px 12px; border-radius: 10px; font-size: 0.7rem; font-weight: bold; margin-bottom: 10px; display: inline-block;}
+
+        /* Display Area */
+        .display-box {
+            margin-top: 50px;
+            background: white;
+            padding: 45px;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            display: none;
+            border: 4px solid var(--english-blue);
+        }
+
+        .vocab-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .vocab-item { background: #f0f7ff; padding: 10px; border-radius: 10px; font-size: 0.9rem; text-align: center; border: 1px solid #d0e8ff; }
+
+        footer { text-align: center; padding: 40px; color: #bbb; }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <a href="index.html" class="btn-back">⬅ Beranda</a>
+        <div style="font-weight:bold; color:var(--primary)">English Adventure Kak Nana</div>
+    </div>
+
+    <header class="header-eng">
+        <h1>Hello, Explorers!</h1>
+        <p>Unlock the world with your English skills</p>
+    </header>
+
+    <div class="container">
+        <div class="search-box">
+            <h3>🔍 Kamus Instan Kak Nana</h3>
+            <input type="text" id="searchInput" onkeyup="cariKata()" placeholder="Cari kata (contoh: Apple, Run, Happy)...">
+            <div id="searchResult" style="margin-top: 20px; font-weight: bold; color: var(--english-blue);"></div>
+        </div>
+
+        <div class="materi-grid">
+            <div class="materi-card" onclick="tampil('greetings')">
+                <div class="badge">SD</div><br>
+                <span style="font-size:50px">👋</span>
+                <h3>Greetings</h3>
+                <p>Menyapa teman dalam Inggris.</p>
+            </div>
+            <div class="materi-card" onclick="tampil('grammar_sd')">
+                <div class="badge">SD</div><br>
+                <span style="font-size:50px">📝</span>
+                <h3>Simple Sentence</h3>
+                <p>I, You, They, We & To Be.</p>
+            </div>
+            <div class="materi-card" onclick="tampil('tenses')">
+                <div class="badge">SMP</div><br>
+                <span style="font-size:50px">⏳</span>
+                <h3>Tenses Dasar</h3>
+                <p>Present, Past, & Future.</p>
+            </div>
+            <div class="materi-card" onclick="tampil('text_type')">
+                <div class="badge">SMP</div><br>
+                <span style="font-size:50px">📚</span>
+                <h3>Text Types</h3>
+                <p>Descriptive & Narrative.</p>
+            </div>
+        </div>
+
+        <div id="panel" class="display-box">
+            <button onclick="document.getElementById('panel').style.display='none'" style="float:right; border:none; background:red; color:white; border-radius:50%; cursor:pointer;">X</button>
+            <div id="konten"></div>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 Ruang Belajar Kak Nana</footer>
+
+    <script>
+        // Data Kamus (Contoh representatif 1000 kata)
+        const dictionary = {
+            "apple": "Apel", "book": "Buku", "cat": "Kucing", "dog": "Anjing", "eat": "Makan",
+            "run": "Lari", "sleep": "Tidur", "happy": "Bahagia", "sad": "Sedih", "school": "Sekolah",
+            "teacher": "Guru", "student": "Murid", "water": "Air", "bread": "Roti", "house": "Rumah",
+            "dream": "Mimpi", "beautiful": "Cantik", "brave": "Berani", "clever": "Pintar", "write": "Menulis",
+            // Tambahkan terus sampai 1000 kosakata...
+        };
+
+        function cariKata() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let res = document.getElementById('searchResult');
+            if(input === "") { res.innerHTML = ""; return; }
+            let arti = dictionary[input] || "Kata tidak ditemukan. Coba kata lain!";
+            res.innerHTML = input + " = " + arti;
+        }
+
+        function tampil(kat) {
+            const p = document.getElementById('panel');
+            const k = document.getElementById('konten');
+            p.style.display = "block";
+            p.scrollIntoView({behavior: 'smooth'});
+
+            if(kat === 'greetings') {
+                k.innerHTML = "<h3>👋 Greetings (SD)</h3><p>Hi! / Hello! (Halo)<br>Good Morning (Pagi)<br>Good Afternoon (Siang)<br>Good Evening (Sore/Malam)</p>";
+            } else if(kat === 'grammar_sd') {
+                k.innerHTML = "<h3>📝 To Be & Pronouns</h3><p>I am...<br>You are...<br>They are...<br>He/She is...</p>";
+            } else if(kat === 'tenses') {
+                k.innerHTML = "<h3>⏳ Tenses Dasar (SMP)</h3><p><strong>Present:</strong> I study (Sekarang)<br><strong>Past:</strong> I studied (Dulu)<br><strong>Future:</strong> I will study (Nanti)</p>";
+            } else if(kat === 'text_type') {
+                k.innerHTML = "<h3>📚 Descriptive Text</h3><p>Teks untuk mendeskripsikan benda/orang.<br>Contoh: <em>My cat is very cute and fluffy.</em></p>";
+            }
+        }
+    </script>
+</body>
+</html>

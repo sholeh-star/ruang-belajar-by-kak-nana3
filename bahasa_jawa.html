@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="jv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinau Basa Jawa - Ruang Belajar Kak Nana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF7EB3;
+            --jawa-brown: #8D6E63;
+            --jawa-gold: #D4AF37;
+            --bg-jawa: #FFF8E1;
+            --text-dark: #3E2723;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: var(--bg-jawa);
+            margin: 0;
+            color: var(--text-dark);
+        }
+
+        /* Navigasi */
+        .nav-bar {
+            background: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .btn-back {
+            text-decoration: none;
+            background: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 0 #e66a9a;
+        }
+
+        /* Header */
+        .header-jawa {
+            background: linear-gradient(135deg, var(--jawa-brown), #5D4037);
+            padding: 100px 20px;
+            text-align: center;
+            color: var(--jawa-gold);
+            border-bottom-left-radius: 80px;
+            border-bottom-right-radius: 80px;
+            border-bottom: 5px solid var(--jawa-gold);
+        }
+
+        .header-jawa h1 { font-size: 3rem; margin: 0; font-family: 'serif'; }
+
+        .container { max-width: 1200px; margin: -50px auto 60px; padding: 0 20px; }
+
+        /* Kamus Section */
+        .search-box {
+            background: white;
+            padding: 30px;
+            border-radius: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            text-align: center;
+            border: 3px solid var(--jawa-gold);
+        }
+
+        .search-box input {
+            width: 80%;
+            padding: 15px 25px;
+            border-radius: 30px;
+            border: 2px solid #ddd;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        /* Grid Materi */
+        .materi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .materi-card {
+            background: white;
+            border-radius: 35px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 3px solid #efebe9;
+            box-shadow: 0 10px 0 #d7ccc8;
+        }
+
+        .materi-card:hover { transform: translateY(-10px); border-color: var(--jawa-gold); }
+
+        .icon-box { font-size: 50px; margin-bottom: 10px; display: block; }
+
+        /* Display Panel */
+        .display-box {
+            margin-top: 50px;
+            background: white;
+            padding: 45px;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            display: none;
+            border: 4px solid var(--jawa-brown);
+        }
+
+        .table-jawa {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .table-jawa th, .table-jawa td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .table-jawa th { background: var(--jawa-brown); color: white; }
+
+        footer { text-align: center; padding: 40px; color: #8D6E63; }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <a href="index.html" class="btn-back">⬅ Beranda</a>
+        <div style="font-weight:bold; color:var(--primary)">Ruang Belajar Basa Jawa</div>
+    </div>
+
+    <header class="header-jawa">
+        <h1>ꦱꦶbmꦲꦸꦧꦱꦗꦮ</h1>
+        <h2>Sinau Basa Jawa</h2>
+        <p>Nguri-uri Budaya Jawi bareng Kak Nana</p>
+    </header>
+
+    <div class="container">
+        <div class="search-box">
+            <h3>🔍 Kamus Kecil (Bausastra)</h3>
+            <input type="text" id="searchInput" onkeyup="cariJawa()" placeholder="Cari kata (contoh: Makan, Rumah, Saya)...">
+            <div id="searchResult" style="margin-top: 20px; font-weight: bold; color: var(--jawa-brown);"></div>
+        </div>
+
+        <div class="materi-grid">
+            <div class="materi-card" onclick="buka('unggah')">
+                <span class="icon-box">🙏</span>
+                <h3>Unggah-Ungguh</h3>
+                <p>Ngoko, Krama Madya, Krama Inggil</p>
+            </div>
+            <div class="materi-card" onclick="buka('aksara')">
+                <span class="icon-box">✍️</span>
+                <h3>Aksara Jawa</h3>
+                <p>Hanacaraka & Pasangan</p>
+            </div>
+            <div class="materi-card" onclick="buka('tembung')">
+                <span class="icon-box">🗣️</span>
+                <h3>Arane Anak Kewan</h3>
+                <p>Nama-nama anak hewan dalam Basa Jawa</p>
+            </div>
+            <div class="materi-card" onclick="buka('paribasan')">
+                <span class="icon-box">📜</span>
+                <h3>Paribasan</h3>
+                <p>Peribahasa & Pepatah Jawa</p>
+            </div>
+        </div>
+
+        <div id="panel" class="display-box">
+            <button onclick="document.getElementById('panel').style.display='none'" style="float:right; cursor:pointer; background:red; color:white; border:none; border-radius:10px; padding:5px 10px;">Tutup X</button>
+            <h2 id="judul">Materi</h2>
+            <div id="konten"></div>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 Ruang Belajar Kak Nana | Rahayu 🙏</footer>
+
+    <script>
+        const bausastra = {
+            "makan": "Mangan (Ngoko) / Nedha (Krama) / Dhahar (Inggil)",
+            "minum": "Ngombe (Ngoko) / Ngunjuk (Inggil)",
+            "rumah": "Omah (Ngoko) / Griya (Krama) / Dalem (Inggil)",
+            "saya": "Aku (Ngoko) / Kula (Krama) / Dalem (Inggil)",
+            "tidur": "Turu (Ngoko) / Tilem (Krama) / Sare (Inggil)",
+            "pergi": "Lunga (Ngoko) / Kesah (Krama) / Tindak (Inggil)",
+            "datang": "Teka (Ngoko) / Rawuh (Inggil)",
+            "nama": "Jeneng (Ngoko) / Asma (Inggil)"
+        };
+
+        function cariJawa() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let res = document.getElementById('searchResult');
+            if(input === "") { res.innerHTML = ""; return; }
+            res.innerHTML = bausastra[input] || "Ngapunten, kata boten kepanggih (Kata tidak ditemukan).";
+        }
+
+        function buka(kat) {
+            const p = document.getElementById('panel');
+            const j = document.getElementById('judul');
+            const k = document.getElementById('konten');
+            p.style.display = "block";
+            p.scrollIntoView({behavior: 'smooth'});
+
+            if(kat === 'unggah') {
+                j.innerText = "🙏 Unggah-Ungguh Basa";
+                k.innerHTML = `
+                    <table class="table-jawa">
+                        <tr><th>Bahasa Indonesia</th><th>Ngoko</th><th>Krama Inggil</th></tr>
+                        <tr><td>Makan</td><td>Mangan</td><td>Dhahar</td></tr>
+                        <tr><td>Tidur</td><td>Turu</td><td>Sare</td></tr>
+                        <tr><td>Mandi</td><td>Adus</td><td>Siram</td></tr>
+                        <tr><td>Beli</td><td>Tuku</td><td>Tumbas / Mundhut</td></tr>
+                    </table>`;
+            } else if(kat === 'aksara') {
+                j.innerText = "✍️ Aksara Jawa (Hanacaraka)";
+                k.innerHTML = `
+                    <p>Aksara Jawa cacahe ana 20 (Dua puluh):</p>
+                    <div style="font-size: 1.5rem; letter-spacing: 10px; background: #fdf5e6; padding: 20px; border-radius: 10px;">
+                        ꦲ bm ꦕ templates ꦏ <br>
+                        ꦢ ꦠ ꦱ ꦮ ꦭ <br>
+                        initial ꦢ ꦗ ꦪ templates <br>
+                        ꦩ ꦒ ꦧ initial ꦔ
+                    </div>`;
+            } else if(kat === 'tembung') {
+                j.innerText = "🗣️ Arane Anak Kewan";
+                k.innerHTML = `
+                    <ul>
+                        <li>Anak Pitik diarani: <strong>Kuthuk</strong></li>
+                        <li>Anak Gajah diarani: <strong>Blidhu</strong></li>
+                        <li>Anak Kucing diarani: <strong>Cemeng</strong></li>
+                        <li>Anak Jaran diarani: <strong>Belis</strong></li>
+                    </ul>`;
+            } else if(kat === 'paribasan') {
+                j.innerText = "📜 Paribasan (Peribahasa)";
+                k.innerHTML = `
+                    <p><strong>1. Ana catur mungkur:</strong> Ora gelem ngrungokake rerasan kang ala (Tidak mau mendengar ghibah).</p>
+                    <p><strong>2. Becik ketitik ala ketara:</strong> Tumindak becik lan ala bakal ketara ing tembe mburine.</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

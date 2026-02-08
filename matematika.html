@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Angka - Ruang Belajar Kak Nana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #FF7EB3;
+            --orange: #FF8A65;
+            --yellow: #FFD93D;
+            --blue: #4facfe;
+            --green: #6ab04c;
+            --purple: #a29bfe;
+            --white: #ffffff;
+            --text-dark: #4F200B;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: #fffdf0;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigasi */
+        .nav-bar {
+            background: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .btn-back {
+            text-decoration: none;
+            background: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 0 #e66a9a;
+            transition: 0.3s;
+        }
+
+        .logo-nana { font-weight: 700; color: var(--primary); font-size: 1.2rem; }
+
+        /* Header */
+        .header-math {
+            background: linear-gradient(135deg, var(--yellow), var(--orange));
+            padding: 100px 20px;
+            text-align: center;
+            color: var(--text-dark);
+            border-bottom-left-radius: 80px;
+            border-bottom-right-radius: 80px;
+            position: relative;
+        }
+
+        .header-math h1 { font-size: 3rem; margin: 0; }
+
+        /* Container */
+        .container { max-width: 1200px; margin: -50px auto 60px; padding: 0 20px; }
+
+        .materi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* Card Style */
+        .misi-card {
+            background: var(--white);
+            border-radius: 35px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid #f0f0f0;
+            box-shadow: 0 10px 0 #eee;
+        }
+
+        .misi-card:hover { transform: translateY(-10px); }
+        
+        .card-orange { border-color: var(--orange); }
+        .card-blue { border-color: var(--blue); }
+        .card-green { border-color: var(--green); }
+        .card-purple { border-color: var(--purple); }
+
+        .icon-misi { font-size: 50px; margin-bottom: 10px; display: block; }
+
+        /* Display Box */
+        .display-materi {
+            margin-top: 50px;
+            background: var(--white);
+            padding: 45px;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            display: none;
+            border: 5px solid var(--yellow);
+            animation: pop 0.5s ease;
+        }
+
+        @keyframes pop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        .rumus-box {
+            background: #f8f9fa;
+            border-left: 10px solid var(--blue);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .close-btn {
+            float: right;
+            background: #FF5252;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        footer { text-align: center; padding: 40px; color: #bbb; }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <a href="index.html" class="btn-back">⬅ Beranda</a>
+        <div class="logo-nana">Ruang Belajar Kak Nana 🌟</div>
+    </div>
+
+    <header class="header-math">
+        <h1>Pusat Rumus Nana</h1>
+        <p>Semua rumus matematika yang kamu butuhkan ada di sini!</p>
+    </header>
+
+    <div class="container">
+        <div class="materi-grid">
+            <div class="misi-card card-orange" onclick="buka('aritmatika')">
+                <span class="icon-misi">🧮</span>
+                <h3>Aritmatika Dasar</h3>
+                <p>Tambah, Kurang, Kali, Bagi</p>
+            </div>
+            <div class="misi-card card-blue" onclick="buka('bangun_datar')">
+                <span class="icon-misi">📏</span>
+                <h3>Bangun Datar</h3>
+                <p>Luas & Keliling (Persegi, Segitiga, dll)</p>
+            </div>
+            <div class="misi-card card-green" onclick="buka('bangun_ruang')">
+                <span class="icon-misi">📦</span>
+                <h3>Bangun Ruang</h3>
+                <p>Volume (Kubus, Tabung, Bola)</p>
+            </div>
+            <div class="misi-card card-purple" onclick="buka('aljabar')">
+                <span class="icon-misi">🧬</span>
+                <h3>Aljabar & Persamaan</h3>
+                <p>Mencari Nilai X dan Y</p>
+            </div>
+            <div class="misi-card card-orange" onclick="buka('statistika')">
+                <span class="icon-misi">📊</span>
+                <h3>Statistika</h3>
+                <p>Mean, Median, Modus</p>
+            </div>
+            <div class="misi-card card-blue" onclick="buka('trigonometri')">
+                <span class="icon-misi">📐</span>
+                <h3>Trigonometri</h3>
+                <p>Sin, Cos, Tan Dasar</p>
+            </div>
+        </div>
+
+        <div id="box-materi" class="display-materi">
+            <button class="close-btn" onclick="tutup()">Tutup X</button>
+            <h2 id="judul">Materi</h2>
+            <div id="isi"></div>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 Ruang Belajar Kak Nana</footer>
+
+    <script>
+        function buka(kategori) {
+            const box = document.getElementById('box-materi');
+            const judul = document.getElementById('judul');
+            const isi = document.getElementById('isi');
+            box.style.display = "block";
+            box.scrollIntoView({ behavior: 'smooth' });
+
+            if(kategori === 'aritmatika') {
+                judul.innerText = "🧮 Aritmatika & Pecahan";
+                isi.innerHTML = `
+                    <p><strong>Rumus Pecahan:</strong></p>
+                    <div class="rumus-box">Penjumlahan: (a/b) + (c/d) = (ad + bc) / bd</div>
+                    <p><strong>Operasi Campuran:</strong> Kerjakan Kurung (), lalu Kali/Bagi, baru Tambah/Kurang.</p>
+                `;
+            } else if(kategori === 'bangun_datar') {
+                judul.innerText = "📏 Bangun Datar";
+                isi.innerHTML = `
+                    <div class="rumus-box">Persegi: Luas = s x s | Keliling = 4 x s</div>
+                    <div class="rumus-box">Segitiga: Luas = 1/2 x a x t</div>
+                    <div class="rumus-box">Lingkaran: Luas = π x r² | Keliling = 2 x π x r</div>
+                `;
+            } else if(kategori === 'bangun_ruang') {
+                judul.innerText = "📦 Bangun Ruang (Volume)";
+                isi.innerHTML = `
+                    <div class="rumus-box">Kubus: V = s³</div>
+                    <div class="rumus-box">Tabung: V = π x r² x t</div>
+                    <div class="rumus-box">Bola: V = 4/3 x π x r³</div>
+                `;
+            } else if(kategori === 'aljabar') {
+                judul.innerText = "🧬 Aljabar Dasar";
+                isi.innerHTML = `
+                    <p><strong>Persamaan Linear:</strong></p>
+                    <div class="rumus-box">Jika 2x + 4 = 10, maka 2x = 6, sehingga x = 3.</div>
+                    <p>Pindahkan angka ke satu sisi, dan huruf ke sisi lainnya!</p>
+                `;
+            } else if(kategori === 'statistika') {
+                judul.innerText = "📊 Statistika (Data)";
+                isi.innerHTML = `
+                    <div class="rumus-box">Mean (Rata-rata): Jumlah Data / Banyak Data</div>
+                    <div class="rumus-box">Median: Nilai Tengah setelah diurutkan</div>
+                    <div class="rumus-box">Modus: Nilai yang paling sering muncul</div>
+                `;
+            } else if(kategori === 'trigonometri') {
+                judul.innerText = "📐 Trigonometri Dasar";
+                isi.innerHTML = `
+                    <p>Gunakan segitiga siku-siku:</p>
+                    <div class="rumus-box">Sin = Depan / Miring (Demi)</div>
+                    <div class="rumus-box">Cos = Samping / Miring (Sami)</div>
+                    <div class="rumus-box">Tan = Depan / Samping (Desa)</div>
+                `;
+            }
+        }
+        function tutup() { document.getElementById('box-materi').style.display = "none"; }
+    </script>
+</body>
+</html>

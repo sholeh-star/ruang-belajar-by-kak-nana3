@@ -1,0 +1,172 @@
+/* 1. DASAR & FONT */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+
+:root {
+    --nana-pink: #FF7EB3;      /* Warna Utama Kak Nana */
+    --nana-blue: #7AFEFD;      /* Warna Aksen Cerah */
+    --nana-yellow: #FFD93D;    /* Warna Bintang */
+    --bg-light: #FFF9FE;       /* Background Pink Sangat Muda */
+    --text-dark: #4A4A4A;      /* Warna Teks Nyaman di Mata */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* 2. HEADER LENGKUNG (WAVY) */
+header {
+    background: linear-gradient(135deg, var(--nana-pink), #FF758C);
+    padding: 80px 20px 100px;
+    text-align: center;
+    color: white;
+    border-bottom-left-radius: 50% 30px;
+    border-bottom-right-radius: 50% 30px;
+    box-shadow: 0 10px 20px rgba(255, 117, 140, 0.2);
+}
+
+header h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    text-shadow: 2px 4px rgba(0,0,0,0.1);
+    letter-spacing: -1px;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-top: 5px;
+}
+
+/* 3. GRID KARTU PELAJARAN */
+.container {
+    max-width: 1100px;
+    margin: -60px auto 40px;
+    padding: 0 20px;
+}
+
+.grid-materi {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 40px;
+    padding: 40px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    /* Efek 3D Tebal agar seperti mainan */
+    box-shadow: 0 12px 0px #F0F0F0; 
+    border: 3px solid #F0F0F0;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--nana-pink);
+    box-shadow: 0 20px 30px rgba(255, 126, 179, 0.2);
+}
+
+.card:active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 0px #F0F0F0;
+}
+
+.icon {
+    font-size: 55px;
+    margin-bottom: 20px;
+    display: block;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+}
+
+/* 4. KOTAK INFO PENDAFTARAN KAK NANA */
+.info-box {
+    background: white;
+    margin-top: 50px;
+    padding: 50px;
+    border-radius: 40px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+    text-align: center;
+    border: 3px dashed var(--nana-pink);
+    background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); /* Pattern tipis */
+}
+
+.info-box h2 {
+    color: var(--nana-pink);
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.contact-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.contact-item {
+    background: #FFF0F6;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    color: var(--nana-pink);
+    font-size: 1.1rem;
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.contact-item:hover {
+    background: var(--nana-pink);
+    color: white;
+}
+
+/* 5. TOMBOL ASISTEN AI */
+.ai-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #F8F8F8;
+}
+
+.ai-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-ai {
+    text-decoration: none;
+    padding: 12px 25px;
+    background: #F3F4F6;
+    border-radius: 20px;
+    font-weight: 700;
+    color: #666;
+    transition: 0.3s;
+}
+
+.btn-ai:hover {
+    background: var(--nana-blue);
+    color: #008484;
+    transform: scale(1.05);
+}
+
+/* 6. FOOTER */
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    color: #D1D1D1;
+    font-size: 0.9rem;
+}
