@@ -3,213 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English World - Ruang Belajar Kak Nana</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <title>English Master - Ruang Belajar Kak Nana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Fredoka+One&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #FF7EB3;
-            --english-blue: #4facfe;
-            --space-purple: #a29bfe;
-            --bg-sky: #f0f9ff;
-            --text-dark: #2c3e50;
+        :root { --blue: #4facfe; --purple: #a29bfe; --pink: #FF7EB3; }
+        body { font-family: 'Quicksand', sans-serif; background: #f0f9ff; margin: 0; }
+
+        /* Header Ceria */
+        header {
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            padding: 60px 20px; text-align: center; color: white;
+            border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;
         }
 
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background: var(--bg-sky);
-            margin: 0;
-            color: var(--text-dark);
+        .container { max-width: 900px; margin: -40px auto 60px; padding: 0 20px; }
+
+        /* Kamus Indo-Inggris */
+        .card {
+            background: white; padding: 30px; border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 30px;
+            border: 4px solid var(--blue);
         }
 
-        /* Navigasi */
-        .nav-bar {
-            background: white;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            position: sticky; top: 0; z-index: 1000;
+        .search-box { display: flex; gap: 10px; margin-top: 15px; }
+        input { flex: 1; padding: 15px; border-radius: 25px; border: 2px solid #ddd; outline: none; }
+        button { background: var(--blue); color: white; border: none; padding: 10px 25px; border-radius: 25px; cursor: pointer; font-weight: bold; }
+
+        /* Area Belajar & Hafalan */
+        .flashcard {
+            background: linear-gradient(135deg, #fff, #f9f9f9);
+            padding: 40px; border-radius: 30px; text-align: center;
+            border: 3px dashed var(--pink); cursor: pointer; transition: 0.3s;
         }
+        .flashcard:hover { transform: scale(1.02); }
+        .word-big { font-size: 3rem; color: var(--pink); font-family: 'Fredoka One'; margin: 10px 0; }
+        .instruction { color: #888; font-size: 0.9rem; }
 
-        .btn-back {
-            text-decoration: none;
-            background: var(--primary);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            box-shadow: 0 4px 0 #e66a9a;
-        }
+        /* Result Kamus */
+        .result-box { margin-top: 20px; padding: 20px; background: #eef7ff; border-radius: 20px; display: none; }
 
-        /* Header */
-        .header-eng {
-            background: linear-gradient(135deg, var(--english-blue), var(--space-purple));
-            padding: 100px 20px;
-            text-align: center;
-            color: white;
-            border-bottom-left-radius: 80px;
-            border-bottom-right-radius: 80px;
-        }
-
-        .header-eng h1 { font-size: 3rem; margin: 0; }
-
-        .container { max-width: 1200px; margin: -50px auto 60px; padding: 0 20px; }
-
-        /* Kamus Section */
-        .search-box {
-            background: white;
-            padding: 30px;
-            border-radius: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-            text-align: center;
-            border: 3px solid var(--english-blue);
-        }
-
-        .search-box input {
-            width: 80%;
-            padding: 15px 25px;
-            border-radius: 30px;
-            border: 2px solid #ddd;
-            font-family: 'Quicksand';
-            font-size: 1.1rem;
-            outline: none;
-        }
-
-        /* Grid Materi */
-        .materi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .materi-card {
-            background: white;
-            border-radius: 35px;
-            padding: 30px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 3px solid #f0f0f0;
-            box-shadow: 0 10px 0 #eee;
-        }
-
-        .materi-card:hover { transform: translateY(-10px); border-color: var(--english-blue); }
-
-        .badge { background: #eee; padding: 4px 12px; border-radius: 10px; font-size: 0.7rem; font-weight: bold; margin-bottom: 10px; display: inline-block;}
-
-        /* Display Area */
-        .display-box {
-            margin-top: 50px;
-            background: white;
-            padding: 45px;
-            border-radius: 40px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            display: none;
-            border: 4px solid var(--english-blue);
-        }
-
-        .vocab-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .vocab-item { background: #f0f7ff; padding: 10px; border-radius: 10px; font-size: 0.9rem; text-align: center; border: 1px solid #d0e8ff; }
-
-        footer { text-align: center; padding: 40px; color: #bbb; }
+        .btn-speak { background: #6ab04c; margin-top: 10px; }
+        footer { text-align: center; padding: 30px; color: #888; }
     </style>
 </head>
 <body>
+    <div class="nav-floating">
+    <a href="index.html" class="btn-home">
+        <span class="home-icon">🏠</span>
+        <span class="home-text">Beranda</span>
+    </a>
+</div>
 
-    <div class="nav-bar">
-        <a href="index.html" class="btn-back">⬅ Beranda</a>
-        <div style="font-weight:bold; color:var(--primary)">English Adventure Kak Nana</div>
-    </div>
+<style>
+    .nav-floating {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 9999; /* Agar selalu di paling atas */
+    }
 
-    <header class="header-eng">
-        <h1>Hello, Explorers!</h1>
-        <p>Unlock the world with your English skills</p>
-    </header>
+    .btn-home {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: white;
+        text-decoration: none;
+        padding: 12px 20px;
+        border-radius: 50px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        border: 2px solid #4facfe;
+        transition: all 0.3s ease;
+    }
 
-    <div class="container">
+    .btn-home:hover {
+        transform: scale(1.1);
+        background: #4facfe;
+    }
+
+    .btn-home:hover .home-text, 
+    .btn-home:hover .home-icon {
+        color: white;
+    }
+
+    .home-icon {
+        font-size: 1.5rem;
+    }
+
+    .home-text {
+        font-weight: bold;
+        color: #4facfe;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    /* Animasi goyang saat halaman pertama kali dibuka */
+    .nav-floating {
+        animation: swing 2s ease-in-out;
+    }
+
+    @keyframes swing {
+        0%, 100% { transform: rotate(0); }
+        20% { transform: rotate(10deg); }
+        40% { transform: rotate(-10deg); }
+        60% { transform: rotate(5deg); }
+        80% { transform: rotate(-5deg); }
+    }
+</style>
+
+<header>
+    <h1>English Hero 🦸‍♂️</h1>
+    <p>Kamus Lengkap & Cara Jago Ngomong Inggris</p>
+</header>
+
+<div class="container">
+    <div class="card">
+        <h3>🔍 Kamus Indonesia ➔ Inggris</h3>
+        <p>Ketik kata Indonesia untuk tahu bahasa Inggrisnya:</p>
         <div class="search-box">
-            <h3>🔍 Kamus Instan Kak Nana</h3>
-            <input type="text" id="searchInput" onkeyup="cariKata()" placeholder="Cari kata (contoh: Apple, Run, Happy)...">
-            <div id="searchResult" style="margin-top: 20px; font-weight: bold; color: var(--english-blue);"></div>
+            <input type="text" id="indoInput" placeholder="Contoh: Makan, Lari, Pintar...">
+            <button onclick="cariKata()">Cari Kata</button>
         </div>
-
-        <div class="materi-grid">
-            <div class="materi-card" onclick="tampil('greetings')">
-                <div class="badge">SD</div><br>
-                <span style="font-size:50px">👋</span>
-                <h3>Greetings</h3>
-                <p>Menyapa teman dalam Inggris.</p>
-            </div>
-            <div class="materi-card" onclick="tampil('grammar_sd')">
-                <div class="badge">SD</div><br>
-                <span style="font-size:50px">📝</span>
-                <h3>Simple Sentence</h3>
-                <p>I, You, They, We & To Be.</p>
-            </div>
-            <div class="materi-card" onclick="tampil('tenses')">
-                <div class="badge">SMP</div><br>
-                <span style="font-size:50px">⏳</span>
-                <h3>Tenses Dasar</h3>
-                <p>Present, Past, & Future.</p>
-            </div>
-            <div class="materi-card" onclick="tampil('text_type')">
-                <div class="badge">SMP</div><br>
-                <span style="font-size:50px">📚</span>
-                <h3>Text Types</h3>
-                <p>Descriptive & Narrative.</p>
-            </div>
-        </div>
-
-        <div id="panel" class="display-box">
-            <button onclick="document.getElementById('panel').style.display='none'" style="float:right; border:none; background:red; color:white; border-radius:50%; cursor:pointer;">X</button>
-            <div id="konten"></div>
+        <div id="resultBox" class="result-box">
+            <h2 id="englishWord" style="color:var(--blue); margin:0;"></h2>
+            <p id="caraBaca" style="font-style:italic; color:#666;"></p>
+            <button class="btn-speak" onclick="suaraKamus()">🔊 Dengarkan Suara</button>
         </div>
     </div>
 
-    <footer>&copy; 2026 Ruang Belajar Kak Nana</footer>
+    <div class="card" style="border-color: var(--pink);">
+        <h3>🎯 Misi Hafalan Hari Ini</h3>
+        <p>Klik kartu untuk melihat artinya dan hafalkan!</p>
+        <div class="flashcard" onclick="flipCard()">
+            <div id="cardSide" class="word-big">Happy</div>
+            <p id="cardMeaning" class="instruction">Klik untuk lihat arti</p>
+        </div>
+        <div style="margin-top:20px; text-align:center;">
+            <button onclick="nextCard()" style="background:var(--pink)">Ganti Kata Baru</button>
+        </div>
+    </div>
 
-    <script>
-        // Data Kamus (Contoh representatif 1000 kata)
-        const dictionary = {
-            "apple": "Apel", "book": "Buku", "cat": "Kucing", "dog": "Anjing", "eat": "Makan",
-            "run": "Lari", "sleep": "Tidur", "happy": "Bahagia", "sad": "Sedih", "school": "Sekolah",
-            "teacher": "Guru", "student": "Murid", "water": "Air", "bread": "Roti", "house": "Rumah",
-            "dream": "Mimpi", "beautiful": "Cantik", "brave": "Berani", "clever": "Pintar", "write": "Menulis",
-            // Tambahkan terus sampai 1000 kosakata...
-        };
+    <div class="card" style="border-color: #6ab04c;">
+        <h3 style="color:#6ab04c">🗣️ Tips Agar Berani Ngomong</h3>
+        <ul style="text-align:left; line-height:1.8;">
+            <li><b>Jangan Takut Salah:</b> Yang penting lawan bicara mengerti.</li>
+            <li><b>Gunakan "Filler Words":</b> Gunakan kata "well...", "you know...", "actually..." agar bicara lebih natural.</li>
+            <li><b>Nonton Kartun Inggris:</b> Ikuti cara mereka bicara (teknik shadowing).</li>
+        </ul>
+    </div>
+</div>
 
-        function cariKata() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let res = document.getElementById('searchResult');
-            if(input === "") { res.innerHTML = ""; return; }
-            let arti = dictionary[input] || "Kata tidak ditemukan. Coba kata lain!";
-            res.innerHTML = input + " = " + arti;
+<footer>&copy; 2026 Ruang Belajar Kak Nana | Jago Inggris Itu Mudah!</footer>
+
+<script>
+    // DATABASE KAMUS INDONESIA - INGGRIS (DITAMBAH BANYAK)
+    const kamusData = {
+        // Kata Kerja Sehari-hari
+        "makan": {en: "Eat", read: "/iːt/"},
+        "tidur": {en: "Sleep", read: "/sliːp/"},
+        "minum": {en: "Drink", read: "/drɪŋk/"},
+        "lari": {en: "Run", read: "/rʌn/"},
+        "jalan": {en: "Walk", read: "/wɔːk/"},
+        "belajar": {en: "Study", read: "/ˈstʌdi/"},
+        "menulis": {en: "Write", read: "/raɪt/"},
+        "membaca": {en: "Read", read: "/riːd/"},
+        "berenang": {en: "Swim", read: "/swɪm/"},
+        "bermain": {en: "Play", read: "/pleɪ/"},
+
+        // Kata Sifat (Adjectives)
+        "pintar": {en: "Smart / Clever", read: "/smɑːrt/"},
+        "berani": {en: "Brave", read: "/breɪv/"},
+        "senang": {en: "Happy", read: "/ˈhæpi/"},
+        "sedih": {en: "Sad", read: "/sæd/"},
+        "marah": {en: "Angry", read: "/ˈæŋɡri/"},
+        "rajin": {en: "Diligent", read: "/ˈdɪlɪdʒənt/"},
+        "malas": {en: "Lazy", read: "/ˈleɪzi/"},
+        "cantik": {en: "Beautiful", read: "/ˈbjuːtɪfl/"},
+        "ganteng": {en: "Handsome", read: "/ˈhænsəm/"},
+        "kuat": {en: "Strong", read: "/strɔːŋ/"},
+
+        // Benda & Tempat
+        "rumah": {en: "House", read: "/haʊs/"},
+        "sekolah": {en: "School", read: "/skuːl/"},
+        "buku": {en: "Book", read: "/bʊk/"},
+        "meja": {en: "Table", read: "/ˈteɪbl/"},
+        "kursi": {en: "Chair", read: "/tʃer/"},
+        "pintu": {en: "Door", read: "/dɔːr/"},
+        "jendela": {en: "Window", read: "/ˈwɪndəʊ/"},
+        "tas": {en: "Bag", read: "/bæɡ/"},
+        "pensil": {en: "Pencil", read: "/ˈpensl/"},
+        "uang": {en: "Money", read: "/ˈmʌni/"},
+
+        // Keluarga
+        "ayah": {en: "Father", read: "/ˈfɑːðər/"},
+        "ibu": {en: "Mother", read: "/ˈmʌðər/"},
+        "kakak": {en: "Older Brother/Sister", read: "/ˈoʊldər/"},
+        "adik": {en: "Younger Brother/Sister", read: "/ˈjʌŋɡər/"},
+        "teman": {en: "Friend", read: "/frend/"}
+    };
+
+    // DATABASE FLASHCARDS HAFALAN (DITAMBAH)
+    const flashcards = [
+        {en: "Believe", id: "Percaya"},
+        {en: "Always", id: "Selalu"},
+        {en: "Sometimes", id: "Kadang-kadang"},
+        {en: "Tomorrow", id: "Besok"},
+        {en: "Yesterday", id: "Kemarin"},
+        {en: "Everything", id: "Semuanya"},
+        {en: "Together", id: "Bersama-sama"},
+        {en: "Never Give Up", id: "Pantang Menyerah"}
+    ];
+    let currentCard = 0;
+
+    function cariKata() {
+        const input = document.getElementById('indoInput').value.toLowerCase().trim();
+        const box = document.getElementById('resultBox');
+        const wordText = document.getElementById('englishWord');
+        const readText = document.getElementById('caraBaca');
+
+        if(kamusData[input]) {
+            box.style.display = "block";
+            wordText.innerText = kamusData[input].en;
+            readText.innerText = "Cara baca: " + kamusData[input].read;
+        } else {
+            // Jika tidak ada di daftar, cari ke API luar (Google Translate)
+            box.style.display = "block";
+            wordText.innerHTML = `<a href="https://translate.google.com/?sl=id&tl=en&text=${input}&op=translate" target="_blank" style="text-decoration:none; color:var(--blue)">Cari di Kamus Besar 🔍</a>`;
+            readText.innerText = "Kata ini belum ada di daftar cepat, klik link di atas!";
         }
+    }
 
-        function tampil(kat) {
-            const p = document.getElementById('panel');
-            const k = document.getElementById('konten');
-            p.style.display = "block";
-            p.scrollIntoView({behavior: 'smooth'});
+    // Fungsi Suara Otomatis
+    function suaraKamus() {
+        const text = document.getElementById('englishWord').innerText;
+        if(text.includes("Cari di Kamus")) return alert("Gunakan link di atas untuk mendengar suara kata ini!");
+        
+        const msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        msg.lang = 'en-US';
+        msg.rate = 0.8; // Sedikit diperlambat agar anak-anak mudah meniru
+        window.speechSynthesis.speak(msg);
+    }
 
-            if(kat === 'greetings') {
-                k.innerHTML = "<h3>👋 Greetings (SD)</h3><p>Hi! / Hello! (Halo)<br>Good Morning (Pagi)<br>Good Afternoon (Siang)<br>Good Evening (Sore/Malam)</p>";
-            } else if(kat === 'grammar_sd') {
-                k.innerHTML = "<h3>📝 To Be & Pronouns</h3><p>I am...<br>You are...<br>They are...<br>He/She is...</p>";
-            } else if(kat === 'tenses') {
-                k.innerHTML = "<h3>⏳ Tenses Dasar (SMP)</h3><p><strong>Present:</strong> I study (Sekarang)<br><strong>Past:</strong> I studied (Dulu)<br><strong>Future:</strong> I will study (Nanti)</p>";
-            } else if(kat === 'text_type') {
-                k.innerHTML = "<h3>📚 Descriptive Text</h3><p>Teks untuk mendeskripsikan benda/orang.<br>Contoh: <em>My cat is very cute and fluffy.</em></p>";
-            }
+    function flipCard() {
+        const side = document.getElementById('cardSide');
+        const meaning = document.getElementById('cardMeaning');
+        if(side.innerText === flashcards[currentCard].en) {
+            side.innerText = flashcards[currentCard].id;
+            meaning.innerText = "Ini Artinya! Klik lagi untuk balik.";
+        } else {
+            side.innerText = flashcards[currentCard].en;
+            meaning.innerText = "Klik untuk lihat arti";
         }
-    </script>
+    }
+
+    function nextCard() {
+        currentCard = (currentCard + 1) % flashcards.length;
+        document.getElementById('cardSide').innerText = flashcards[currentCard].en;
+        document.getElementById('cardMeaning').innerText = "Klik untuk lihat arti";
+    }
+
+    // Support Tombol Enter saat mengetik
+    document.getElementById("indoInput").addEventListener("keyup", function(event) {
+        if (event.key === "Enter") cariKata();
+    });
+</script>
+
 </body>
 </html>
